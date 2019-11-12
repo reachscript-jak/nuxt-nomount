@@ -7,15 +7,17 @@
     </div>
     <div>登録されたユーザ</div>
     <div v-for="name in speakersName" v-bind:key="name">{{ name }}</div>
-    <button @click="dispSpeakers">スピーカー表示</button>
+    <ShuffleResult :speakersName="speakersName" />
   </div>
 </template>
 
 <script>
 import InputWithButton from '@/components/InputWithButton'
+import ShuffleResult from '@/components/ShuffleResult'
 export default {
   components: {
-    InputWithButton
+    InputWithButton,
+    ShuffleResult
   },
   data() {
     return {
@@ -29,9 +31,6 @@ export default {
     },
     regist(name) {
       this.speakersName.push(name)
-    },
-    dispSpeakers() {
-      console.log(this.speakersName)
     }
   }
 }
