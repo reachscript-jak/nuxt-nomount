@@ -1,22 +1,24 @@
 <template>
   <div>
-    <input v-model="name" placeholder="Input name here" />
+    <input v-model="state.name" placeholder="Input name here" />
     <button @click="handleClick">この人</button>
   </div>
 </template>
 
 <script>
-export default {
+import { createComponent, reactive } from '@vue/composition-api'
+
+export default createComponent({
   name: 'InputWithButton',
-  data() {
-    return {
+  setup(_props, context) {
+    const state = reactive({
       name: ''
-    }
-  },
-  methods: {
-    handleClick() {
-      this.$emit('regist', this.name)
+    })
+    const handleClick = () => context.emit('regist', state.name)
+    return {
+      state,
+      handleClick
     }
   }
-}
+})
 </script>

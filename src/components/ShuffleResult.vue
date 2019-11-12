@@ -1,31 +1,37 @@
 <template>
   <div>
     <button @click="dispSpeakers">スピーカー表示</button>
-    <div v-for="val in dispArr" v-bind:key="val">{{ val }}</div>
+    <div v-for="val in state.dispArr" v-bind:key="val">{{ val }}</div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      dispArr: []
-    }
-  },
+import { createComponent, reactive } from '@vue/composition-api'
+
+export default createComponent({
   props: {
     speakersName: Array
   },
-  methods: {
-    dispSpeakers() {
-      this.dispArr = this.speakersName.slice(0)
-      for (let i = this.dispArr.length - 1; i >= 0; i--) {
+  setup(props) {
+    const state = reactive({
+      dispArr: []
+    })
+    const { speakersName } = props
+
+    const dispSpeakers = () => {
+      state.dispArr = speakersName.slice(0)
+      for (let i = state.dispArr.length - 1; i >= 0; i--) {
         const rand = Math.floor(Math.random() * (i + 1))
-        ;[this.dispArr[i], this.dispArr[rand]] = [
-          this.dispArr[rand],
-          this.dispArr[i]
+        ;[state.dispArr[i], state.dispArr[rand]] = [
+          state.dispArr[rand],
+          state.dispArr[i]
         ]
       }
     }
+    return {
+      state,
+      dispSpeakers
+    }
   }
-}
+})
 </script>
