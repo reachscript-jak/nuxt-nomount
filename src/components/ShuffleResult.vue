@@ -6,19 +6,18 @@
 </template>
 
 <script>
-import { createComponent, reactive } from '@vue/composition-api'
+import { createComponent, reactive, inject } from '@vue/composition-api'
+import ShuffleKey from '@/components/key/shuffle'
 
 export default createComponent({
-  props: {
-    speakersName: Array
-  },
-  setup(props) {
+  setup() {
+    const store = inject(ShuffleKey)
     const state = reactive({
       dispArr: []
     })
-    const { speakersName } = props
 
     const dispSpeakers = () => {
+      const speakersName = store.speakersName
       state.dispArr = speakersName.slice(0)
       for (let i = state.dispArr.length - 1; i >= 0; i--) {
         const rand = Math.floor(Math.random() * (i + 1))
