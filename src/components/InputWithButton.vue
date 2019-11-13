@@ -1,7 +1,18 @@
 <template>
-  <div>
-    <input v-model="state.name" placeholder="Input name here" />
-    <button @click="handleClick">この人</button>
+  <div class="inputButtonArea">
+    <input
+      v-model="state.name"
+      type="text"
+      class="input is-rounded is-primary"
+      placeholder="お名前なんじゃらほい"
+    />
+    <button
+      @click="handleClick"
+      class="button is-primary is-light is-rounded"
+      style="margin-left:10px;"
+    >
+      てい
+    </button>
   </div>
 </template>
 
@@ -22,3 +33,10 @@ export default createComponent({
   }
 })
 </script>
+
+<style scoped>
+.inputButtonArea {
+  display: flex;
+  margin-top: 10px;
+}
+</style>

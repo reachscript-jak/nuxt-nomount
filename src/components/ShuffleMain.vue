@@ -1,13 +1,35 @@
 <template>
-  <div class="root">
-    <p>シャッフルのページです</p>
-    <button @click="add">追加</button>
-    <div v-for="(speaker, idx) in state.speakersArr" v-bind:key="idx">
-      <InputWithButton @regist="regist" />
+  <div class="shuffleContainer has-background-white-bis">
+    <div class="contentArea">
+      <h1 class="title is-3">Let's Shuffle!!</h1>
+      <button @click="add" class="button is-primary is-light is-rounded">
+        追加
+      </button>
     </div>
-    <div>登録されたユーザ</div>
-    <div v-for="name in speakersName" v-bind:key="name">{{ name }}</div>
-    <ShuffleResult />
+    <div>
+      <div
+        v-for="(speaker, idx) in state.speakersArr"
+        v-bind:key="idx"
+        style="width:300px;"
+      >
+        <InputWithButton @regist="regist" />
+      </div>
+    </div>
+    <div class="contentArea">
+      <h2 class="title is-5">登録されたユーザ</h2>
+      <div style="display:flex;justify-content:center;">
+        <div
+          v-for="name in speakersName"
+          v-bind:key="name"
+          style="margin-right:5px;"
+        >
+          {{ name }}
+        </div>
+      </div>
+    </div>
+    <div class="contentArea">
+      <ShuffleResult />
+    </div>
   </div>
 </template>
 
@@ -44,14 +66,16 @@ export default createComponent({
 })
 </script>
 
-<style>
-.root {
+<style scoped>
+.shuffleContainer {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
+}
+.contentArea {
+  padding-top: 30px;
 }
 </style>

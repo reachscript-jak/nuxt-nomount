@@ -1,7 +1,19 @@
 <template>
   <div>
-    <button @click="dispSpeakers">スピーカー表示</button>
-    <div v-for="val in state.dispArr" v-bind:key="val">{{ val }}</div>
+    <button
+      @click="dispSpeakers"
+      class="button is-danger is-rounded is-light"
+      style="margin-bottom:20px;"
+    >
+      結果発表👏
+    </button>
+    <p
+      v-for="val in state.dispArr"
+      v-bind:key="val"
+      class="has-text-weight-bold is-size-4"
+    >
+      {{ val }}
+    </p>
   </div>
 </template>
 
