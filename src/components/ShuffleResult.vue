@@ -7,13 +7,7 @@
     >
       結果発表👏
     </button>
-    <p
-      v-for="val in state.dispArr"
-      v-bind:key="val"
-      class="has-text-weight-bold is-size-4"
-    >
-      {{ val }}
-    </p>
+    <ui id="disp_area"></ui>
   </div>
 </template>
 
@@ -37,6 +31,18 @@ export default createComponent({
           state.dispArr[rand],
           state.dispArr[i]
         ]
+      }
+      dispNameOneByOne(state.dispArr.slice(0))
+    }
+    const dispNameOneByOne = (nameArr) => {
+      const li = document.createElement('li')
+      li.textContent = nameArr[0]
+      document.getElementById('disp_area').appendChild(li)
+      nameArr.shift()
+      if (nameArr.length > 0) {
+        setTimeout(function() {
+          dispNameOneByOne(nameArr)
+        }, 1000)
       }
     }
     return {
